@@ -1,4 +1,0 @@
-TITLE: 📉 Bitcoin TANKS 2.4% | $87,715 Bitcoin Analysis | Jan 29
-TAGS: cryptocurrency, bitcoin, ethereum, crypto news, trading, BTC, BTC price, BTC news, bitcoin, market analysis, cardano
-DESCRIPTION: Breaking down Bitcoin's performance: $87,715, down 2.4 percent today.
-TEMPLATES: BG=dark_purple, Voice=en-US-JennyNeural, Chart=fire_orange
