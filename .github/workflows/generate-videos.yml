@@ -1,0 +1,38 @@
+name: Generate Daily Crypto Videos
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      video_type:
+        description: 'Type of video to generate'
+        required: true
+        default: 'batch'
+        type: choice
+        options: ['batch', 'bitcoin', 'gainers']
+
+jobs:
+  generate-videos:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install system dependencies
+      run: sudo apt-get install -y ffmpeg
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Create directories
+      run: mkdir -p assets/{backgrounds,audio,charts,output}
+    - name: Generate videos
+      run: python generate_advanced_video.py batch 3
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: crypto-videos-${{ github.run_number }}
+        path: assets/output/
+        retention-days: 30
